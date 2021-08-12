@@ -6,5 +6,5 @@
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
-  "include": ["./src/**.*", "./src/**.**.*"]
+  "include": ["./src/**.*", "./src/**.resolvers.ts", "./src/**.typeDefs.ts"]
 }
