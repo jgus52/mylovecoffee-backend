@@ -40,7 +40,7 @@ const startApolloServer = async () => {
   const httpServer = http.createServer(app);
   SubscriptionServer.create({ schema, execute, subscribe }, { server: httpServer, path: server.graphqlPath });
 
-  app.listen({ port: PORT }, () => console.log(`Server is running on http://localhost:${PORT}/graphql`));
+  httpServer.listen({ port: PORT }, () => console.log(`Server is running on http://localhost:${PORT}/graphql`));
 };
 
 startApolloServer();
