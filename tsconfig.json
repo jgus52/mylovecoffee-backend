@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "./built",
+    "outDir": "./build",
     "allowJs": true,
-    "target": "es5",
-    "esModuleInterop": true
-    //"moduleResolution": "node"
+    "target": "ES5",
+    "esModuleInterop": true,
+    "moduleResolution": "node"
   },
   "include": ["./src/**.*"]
 }

@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec ts-node src/server.ts --ext ts,js",
-    "migrate": "prisma migrate dev"
+    "migrate": "prisma migrate dev",
+    "build": "tsc",
+    "start": "ts-node --transpile-only build/server"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,8 @@
   },
   "homepage": "https://github.com/jgus52/nomadcoffee-backend#readme",
   "dependencies": {
+    "@graphql-tools/load-files": "^6.3.2",
+    "@graphql-tools/merge": "^7.0.0",
     "@prisma/client": "^2.28.0",
     "apollo-server": "^3.1.1",
     "apollo-server-express": "^3.1.2",
@@ -27,16 +30,15 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "graphql": "^15.5.1",
-    "graphql-tools": "^8.0.0",
     "graphql-upload": "^12.0.0",
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.14.8",
     "@babel/core": "^7.14.8",
     "@babel/node": "^7.14.9",
+    "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.14.9",
-    "@graphql-tools/load-files": "^6.3.2",
-    "@graphql-tools/merge": "^6.2.16",
     "nodemon": "^2.0.12",
     "prisma": "^2.28.0",
     "ts-node": "^10.1.0",
