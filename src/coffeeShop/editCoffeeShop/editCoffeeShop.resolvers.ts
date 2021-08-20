@@ -47,7 +47,6 @@ const resolver: Resolvers = {
         }
         //if there is photo for upload
         if (photos) {
-          console.log(photos);
           photos.forEach(async (photo) => {
             const { filename, createReadStream } = await photo;
             const newFilename = `${loggedInUser.id}-${targetCoffeeShop.name}.${coffeeShopId}-${Date.now()}-${filename}`;

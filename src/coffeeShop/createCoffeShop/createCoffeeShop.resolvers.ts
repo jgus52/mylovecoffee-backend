@@ -41,7 +41,6 @@ const resolvers: Resolvers = {
       });
 
       if (photos) {
-        console.log(photos);
         photos.forEach(async (photo) => {
           const { filename, createReadStream } = await photo;
           const newFilename = `${loggedInUser.id}-${newCoffeeShop.name}.${newCoffeeShop.id}-${Date.now()}-${filename}`;
@@ -66,6 +65,7 @@ const resolvers: Resolvers = {
 
       return {
         ok: true,
+        coffeeShopId: newCoffeeShop.id,
       };
     }),
   },
