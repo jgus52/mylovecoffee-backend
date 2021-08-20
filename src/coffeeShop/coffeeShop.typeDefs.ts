@@ -5,6 +5,7 @@ export default gql`
     id: Int
     url: String
     shop: CoffeeShop
+    coffeeShopId: Int
   }
   type CoffeeShop {
     id: Int!
