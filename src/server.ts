@@ -20,6 +20,7 @@ const startApolloServer = async () => {
         client,
       };
     },
+    introspection: true,
     plugins: [
       ApolloServerPluginLandingPageGraphQLPlayground({
         // options
@@ -34,7 +35,9 @@ const startApolloServer = async () => {
   app.use(graphqlUploadExpress());
   server.applyMiddleware({ app });
 
-  app.listen({ port: PORT }, () => console.log(`Server is running on http://localhost:${PORT}/graphql`));
+  app.listen({ port: PORT }, () =>
+    console.log(`Server is running on http://localhost:${PORT}/graphql`)
+  );
 };
 
 startApolloServer();
