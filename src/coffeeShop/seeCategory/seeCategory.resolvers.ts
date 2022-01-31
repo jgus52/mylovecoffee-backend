@@ -11,9 +11,7 @@ const resolver: Resolvers = {
         take: 10,
         cursor: coffeeShopCursor ? { id: coffeeShopCursor } : undefined,
         where: {
-          category: {
-            some: { id: categoryId },
-          },
+          categoryId,
         },
       });
     },

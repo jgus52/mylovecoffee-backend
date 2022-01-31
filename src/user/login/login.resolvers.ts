@@ -15,9 +15,13 @@ const resolvers: Resolvers = {
 
       if (!checkPwd) return errorReturn;
 
-      const token = await jwt.sign({ id: loginUser.id }, process.env.SECRET_KEY, { expiresIn: "2D" });
+      const token = await jwt.sign(
+        { id: loginUser.id },
+        process.env.SECRET_KEY,
+        { expiresIn: "2D" }
+      );
 
-      return { ok: true, token };
+      return { ok: true, userId: loginUser.id, token };
     },
   },
 };

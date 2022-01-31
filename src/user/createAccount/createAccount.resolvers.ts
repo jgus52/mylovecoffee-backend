@@ -1,9 +1,15 @@
 import bcrypt from "bcrypt";
-import { Resolvers } from "../../types";
+import { GraphQLUpload } from "graphql-upload";
+import { uploadS3 } from "../../shared.utils";
 
-const resolvers: Resolvers = {
+const resolvers = {
+  Upload: GraphQLUpload,
   Mutation: {
-    createAccount: async (_, { username, email, name, location, password, avatarURL, githubUsername }, { client }) => {
+    createAccount: async (
+      _,
+      { username, email, name, location, password, avatarURL, githubUsername },
+      { client }
+    ) => {
       try {
         const existinguserWithusername = await client.user.findFirst({
           where: { username },
@@ -21,6 +27,11 @@ const resolvers: Resolvers = {
 
         const hashedPwd = await bcrypt.hash(password, 10);
 
+        let newAvatarURL = undefined;
+        if (avatarURL) {
+          newAvatarURL = await uploadS3(avatarURL, 0);
+        }
+
         await client.user.create({
           data: {
             username,
@@ -28,7 +39,7 @@ const resolvers: Resolvers = {
             name,
             location,
             password: hashedPwd,
-            avatarURL,
+            avatarURL: newAvatarURL,
             githubUsername,
           },
         });

@@ -2,10 +2,11 @@ import { Resolvers } from "../types";
 
 const resolver: Resolvers = {
   CoffeeShop: {
-    category: ({ id }, _, { client }) => {
-      return client.category.findMany({
+    category: async ({ id }, _, { client }) => {
+      const cate = await client.category.findFirst({
         where: { shops: { some: { id } } },
       });
+      return cate;
     },
     photos: ({ id }, _, { client }) => {
       return client.coffeeShopPhoto.findMany({
@@ -14,9 +15,18 @@ const resolver: Resolvers = {
     },
   },
   Category: {
+    // id: ({ id }) => {
+    //   return id;
+    // },
+    // name: async ({ id }, _, { client }) => {
+    //   const cate = await client.category.findUnique({
+    //     where: { id: id },
+    //   });
+    //   return cate.name;
+    // },
     totalShops: ({ id }, _, { client }) => {
       return client.coffeeShop.count({
-        where: { category: { some: { id } } },
+        where: { categoryId: id },
       });
     },
   },

@@ -10,11 +10,12 @@ export default gql`
   type CoffeeShop {
     id: Int!
     name: String!
-    latitude: String!
-    longitude: String!
+    address: String!
+    content: String!
+    userId: Int!
     user: User
     photos: [CoffeeShopPhoto]
-    category: [Category]
+    category: Category
   }
   type Category {
     id: Int
