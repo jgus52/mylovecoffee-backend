@@ -21,7 +21,7 @@ const resolvers: Resolvers = {
         { expiresIn: "2D" }
       );
 
-      return { ok: true, userId: loginUser.id, token };
+      return { ok: true, userId: loginUser.id, token, user: loginUser };
     },
   },
 };
