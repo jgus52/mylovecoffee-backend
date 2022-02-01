@@ -7,8 +7,7 @@ export default gql`
   type coffeeShopResult {
     ok: Boolean!
     error: String
-    coffeeShopId: Int
-    photos: [CoffeeShopPhoto]
+    coffeeShop: CoffeeShop
   }
   type Mutation {
     createCoffeeShop(

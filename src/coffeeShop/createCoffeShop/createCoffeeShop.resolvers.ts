@@ -80,8 +80,7 @@ const resolvers = {
 
         return {
           ok: true,
-          coffeeShopId: newCoffeeShop.id,
-          photos: retPhotos,
+          coffeeShop: newCoffeeShop,
         };
       }
     ),
