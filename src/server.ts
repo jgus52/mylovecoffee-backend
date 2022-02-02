@@ -20,7 +20,7 @@ const startApolloServer = async () => {
         client,
       };
     },
-    introspection: true,
+    //introspection: true,
     plugins: [
       ApolloServerPluginLandingPageGraphQLPlayground({
         // options
