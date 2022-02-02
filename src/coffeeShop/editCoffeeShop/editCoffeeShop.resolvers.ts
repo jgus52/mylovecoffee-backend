@@ -28,37 +28,26 @@ const resolver: Resolvers = {
               where: { name: category },
             });
 
-            if (!targetCategory) {
-              categoryObj = {
-                connectOrCreate: {
-                  where: {
-                    name: category,
-                  },
-                  create: {
-                    name: category,
-                    slug: category,
-                  },
-                },
-              };
-            } else {
-              const check = await client.coffeeShop.findFirst({
-                where: {
-                  id: coffeeShopId,
-                  category: { name: category },
-                },
-              });
-              if (!check) {
+            if (targetCoffeeShop.category.id != targetCategory.id) {
+              if (!targetCategory) {
                 categoryObj = {
-                  connect: { id: targetCategory.id },
+                  connectOrCreate: {
+                    where: {
+                      name: category,
+                    },
+                    create: {
+                      name: category,
+                      slug: category,
+                    },
+                  },
                 };
               } else {
                 categoryObj = {
-                  disconnect: { id: targetCategory.id },
+                  connect: { id: targetCategory.id },
                 };
               }
             }
           }
-          //if there is photo for upload
 
           //update
           await client.coffeeShop.update({
